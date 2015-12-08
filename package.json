@@ -1,0 +1,24 @@
+{
+  "name": "spawn",
+  "version": "1.0.0",
+  "description": "Spawn tasks for Javascript, it's means process or async tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lygstate/spawn"
+  },
+  "keywords":
+    "async AsyncSemaphore Deferred Process Spawn"
+  ],
+  "author": "Yonggang Luo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lygstate/spawn/issues"
+  },
+  "homepage": "https://github.com/lygstate/spawn#readme",
+  "dependencies": {
+  }
+}
