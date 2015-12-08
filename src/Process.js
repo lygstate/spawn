@@ -7,6 +7,15 @@ exports.exec = (command, options)=>{
   options = options || {};
   let deferred = defer();
   let result = ChildProcess.exec(command, options, function(error, stdout, stderr){
+    if (options.echo) {
+      console.log(command);
+    }
+    if (options.echoStdout) {
+      console.log(stdout);
+    }
+    if (options.echoError) {
+      console.log(stderr);
+    }
     deferred.resolve({
       result: result,
       error: error,
