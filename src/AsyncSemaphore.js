@@ -1,3 +1,5 @@
+'use strict';
+
 function AsyncSemaphore(count) {
   this.count = count;
   this.n = 0;
@@ -7,7 +9,7 @@ function AsyncSemaphore(count) {
 }
 
 AsyncSemaphore.prototype = {
-  acquire: function(first=false) {
+  acquire: function(first) {
     if (this.tryAcquire()) {
       return Promise.resolve();
     }
@@ -23,7 +25,7 @@ AsyncSemaphore.prototype = {
   },
 
   _resolveAcquireFull: function() {
-    var existAcquireFullList = this.acquireFullList;
+    let existAcquireFullList = this.acquireFullList;
     this.acquireFullList = [];
     for (let acquireFullInfo of existAcquireFullList) {
       if (this.acquireFifo.length + this.count >= acquireFullInfo.fullCount) {
@@ -38,7 +40,7 @@ AsyncSemaphore.prototype = {
     if (this.acquireFifo.length + this.count >= fullCount) {
       return Promise.resolve();
     }
-    var self = this;
+    let self = this;
     return new Promise(function(resolve) {
       self.acquireFullList.push({fullCount:fullCount, resolve:resolve});
     });
@@ -58,15 +60,15 @@ AsyncSemaphore.prototype = {
   },
 
   tryAcquireAll: function() {
-    var ret = this.releaseFifo.length > 0 || this.n < this.count;
-    var existReleaseFifo = this.releaseFifo;
+    let ret = this.releaseFifo.length > 0 || this.n < this.count;
+    let existReleaseFifo = this.releaseFifo;
     this.releaseFifo = [];
     for (let releaseResolve of existReleaseFifo) releaseResolve();
     this.n = this.count;
     return ret;
   },
 
-  release: function(first=false) { /* never less than zero */
+  release: function(first) { /* never less than zero */
     if (this.tryRelease()) {
       return Promise.resolve();
     }
@@ -94,8 +96,8 @@ AsyncSemaphore.prototype = {
   },
 
   tryReleaseAll: function() {
-    var ret = this.acquireFifo.length > 0 || this.n > 0;
-    var existAcquireFifo = this.acquireFifo;
+    let ret = this.acquireFifo.length > 0 || this.n > 0;
+    let existAcquireFifo = this.acquireFifo;
     this.acquireFifo = [];
     for (let acquireResolve of existAcquireFifo) acquireResolve();
     this.n = 0;
