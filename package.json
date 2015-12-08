@@ -1,5 +1,5 @@
 {
-  "name": "spawnjs",
+  "name": "spawn-js",
   "version": "0.0.1",
   "description": "Spawn tasks for Javascript, it's means process or async tasks",
   "main": "index.js",
