@@ -1,6 +1,6 @@
 {
-  "name": "spawn",
-  "version": "1.0.0",
+  "name": "spawnjs",
+  "version": "0.0.1",
   "description": "Spawn tasks for Javascript, it's means process or async tasks",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,13 @@
     "type": "git",
     "url": "git+ssh://git@github.com/lygstate/spawn"
   },
-  "keywords":
-    "async AsyncSemaphore Deferred Process Spawn"
+  "keywords": [
+    "async",
+    "semaphore",
+    "deferred",
+    "process",
+    "spawn",
+    "exec"
   ],
   "author": "Yonggang Luo",
   "license": "ISC",
