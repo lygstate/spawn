@@ -6,10 +6,10 @@ const defer = require('./Deferred.js').defer;
 exports.exec = (command, options)=>{
   options = options || {};
   let deferred = defer();
+  if (options.echo) {
+    console.log(command);
+  }
   let result = ChildProcess.exec(command, options, function(error, stdout, stderr){
-    if (options.echo) {
-      console.log(command);
-    }
     if (options.echoStdout) {
       console.log(stdout);
     }
